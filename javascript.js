@@ -14,6 +14,24 @@ submitExercise.addEventListener("click", () => {
     const session = document.createElement("div");
     session.classList.add("session");
 
+    const exercise = document.createElement("input");
+    exercise.value = exerciseValue;
+    exercise.classList.add("exercise");
+    exercise.readOnly = true;
+
+    const duration = document.createElement("input");
+    duration.value = `${durationValue} min(s)`;
+    duration.classList.add("duration");
+    duration.readOnly = true;
+
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.id = "edit";
+
+    const favoritesBtn = document.createElement("button");
+    favoritesBtn.textContent = "Add to favorites";
+    favoritesBtn.id = "favorites";
+
     /*----pushes to savedExercise with the value/input of exercise && duration */
     savedExercise.push({
       exercise: exerciseValue,
@@ -24,12 +42,11 @@ submitExercise.addEventListener("click", () => {
 
     localStorage.setItem("savedExercise", JSON.stringify(savedExercise));
 
-    session.textContent = `${exerciseValue} - for ${durationValue} min(s) -  on ${new Date()} `;
-    sessions.append(session);
+    sessions.append(session, exercise, duration, editBtn, favoritesBtn);
 
     exerciseInput.value = "";
     durationInput.value = "";
-
-    edi;
   }
 });
+
+/*session.textContent = `${exerciseValue} - for ${durationValue} min(s) -  on ${new Date()} `;*/
