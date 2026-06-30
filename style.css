@@ -1,0 +1,27 @@
+.dashboard {
+  padding-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.session {
+  border: 2px;
+  background-color: rgb(26, 133, 160);
+  border-color: wheat;
+  gap: 30px;
+  padding: 10px;
+  color: white;
+  border-radius: 12px;
+}
+
+.data {
+  width: 200px;
+  border-radius: 12px;
+}
+
+option {
+  width: 200px;
+}
