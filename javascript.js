@@ -30,6 +30,16 @@ submitExercise.addEventListener("click", () => {
     tags.textContent = "tags";
     tags.classList.add("tags");
 
+    if (exerciseValue === "Running") {
+      tags.textContent = "Cardio";
+    } else if (exerciseValue === "Lifting") {
+      tags.textContent = "Strength ";
+    } else if (exerciseValue === "Cycling") {
+      tags.textContent = "Cardio / Endurance ";
+    } else if (exerciseValue === "Mountain-Hiking") {
+      tags.textContent = "Endurance / stability";
+    }
+
     const duration = document.createElement("input");
     duration.value = `${hours}h ${mins}m`;
     duration.classList.add("duration");
@@ -55,10 +65,6 @@ submitExercise.addEventListener("click", () => {
     const favoritesBtn = document.createElement("button");
     favoritesBtn.textContent = "Add to favorites";
     favoritesBtn.id = "favorites";
-
-    favoritesBtn.addEventListener("click", () => {
-      favorites = true;
-    });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
