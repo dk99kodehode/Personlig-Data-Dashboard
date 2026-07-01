@@ -3,6 +3,8 @@ const exerciseInput = document.getElementById("exercise-input");
 const sessions = document.getElementById("sessions");
 const durationInput = document.getElementById("duration-input");
 
+const showFavorites = document.getElementById("show-favorites");
+
 let savedExercise = JSON.parse(localStorage.getItem("savedExercise")) || [];
 
 /*--------SHOUT OUT SANDER TODO LOCAL STORAGE LIST && Our Awesome Game -------- */
@@ -22,6 +24,11 @@ submitExercise.addEventListener("click", () => {
     exercise.classList.add("exercise");
     exercise.readOnly = true;
     exercise.value = exerciseValue;
+
+    /*----------TAGS------*/
+    const tags = document.createElement("p");
+    tags.textContent = "tags";
+    tags.classList.add("tags");
 
     const duration = document.createElement("input");
     duration.value = `${hours}h ${mins}m`;
@@ -49,6 +56,28 @@ submitExercise.addEventListener("click", () => {
     favoritesBtn.textContent = "Add to favorites";
     favoritesBtn.id = "favorites";
 
+    favoritesBtn.addEventListener("click", () => {
+      favorites = true;
+    });
+
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.id = "delete";
+
+    deleteBtn.addEventListener("click", () => {
+      const index = savedExercise.findIndex(
+        (item) =>
+          item.exercise === exerciseValue && item.duration === durationValue,
+      );
+
+      if (index !== -1) {
+        savedExercise.splice(index, 1);
+        localStorage.setItem("savedExercise", JSON.stringify(savedExercise));
+      }
+
+      session.remove();
+    });
+
     /*----pushes to savedExercise with the value/input of exercise && duration */
     savedExercise.push({
       exercise: exerciseValue,
@@ -59,11 +88,10 @@ submitExercise.addEventListener("click", () => {
 
     localStorage.setItem("savedExercise", JSON.stringify(savedExercise));
 
-    sessions.append(session, exercise, duration, editBtn, favoritesBtn);
+    session.append(exercise, duration, editBtn, favoritesBtn, deleteBtn, tags);
+    sessions.appendChild(session);
 
     exerciseInput.value = "";
     durationInput.value = "";
   }
 });
-
-/*session.textContent = `${exerciseValue} - for ${durationValue} min(s) -  on ${new Date()} `;*/

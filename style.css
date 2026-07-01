@@ -16,11 +16,6 @@ option {
   width: 200px;
 }
 
-#session {
-  gap: 20px;
-  flex-direction: row;
-}
-
 #favorites {
   background-color: rgb(231, 86, 86);
   color: white;
@@ -28,5 +23,14 @@ option {
 
 #edit {
   background-color: rgb(47, 166, 202);
+  color: white;
+  cursor: pointer;
+}
+
+.tags {
+  background-color: rgb(63, 190, 4);
+  width: 50px;
+  border-radius: 12px;
+  margin-top: 0;
   color: white;
 }
