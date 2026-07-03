@@ -1,4 +1,4 @@
-const submitExercise = document.getElementById("submit-exercise");
+const saveExercise = document.getElementById("save-exercise");
 const exerciseInput = document.getElementById("exercise-input");
 const sessions = document.getElementById("sessions");
 const durationInput = document.getElementById("duration-input");
@@ -8,7 +8,7 @@ const showFavorites = document.getElementById("show-favorites");
 let savedExercise = JSON.parse(localStorage.getItem("savedExercise")) || [];
 
 /*--------SHOUT OUT SANDER TODO LOCAL STORAGE LIST && Our Awesome Game -------- */
-submitExercise.addEventListener("click", () => {
+saveExercise.addEventListener("click", () => {
   const exerciseValue = exerciseInput.value.trim();
   const durationValue = durationInput.value.trim();
 
@@ -35,9 +35,9 @@ submitExercise.addEventListener("click", () => {
     } else if (exerciseValue === "Lifting") {
       tags.textContent = "Strength ";
     } else if (exerciseValue === "Cycling") {
-      tags.textContent = "Cardio / Endurance ";
+      tags.textContent = "Endurance ";
     } else if (exerciseValue === "Mountain-Hiking") {
-      tags.textContent = "Endurance / stability";
+      tags.textContent = "Endurance";
     }
 
     const duration = document.createElement("input");
@@ -95,6 +95,7 @@ submitExercise.addEventListener("click", () => {
     localStorage.setItem("savedExercise", JSON.stringify(savedExercise));
 
     session.append(exercise, duration, editBtn, favoritesBtn, deleteBtn, tags);
+
     sessions.appendChild(session);
 
     exerciseInput.value = "";
