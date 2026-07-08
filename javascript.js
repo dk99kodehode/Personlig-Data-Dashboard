@@ -7,7 +7,6 @@ const showFavorites = document.getElementById("show-favorites");
 
 let savedExercise = JSON.parse(localStorage.getItem("savedExercise")) || [];
 
-/*--------SHOUT OUT SANDER TODO LOCAL STORAGE LIST && Our Awesome Game -------- */
 saveExercise.addEventListener("click", () => {
   const exerciseValue = exerciseInput.value.trim();
   const durationValue = durationInput.value.trim();
@@ -87,7 +86,7 @@ saveExercise.addEventListener("click", () => {
     /*----pushes to savedExercise with the value/input of exercise && duration */
     savedExercise.push({
       exercise: exerciseValue,
-      duration: durationValue,
+      duration: `${hours}h ${mins}m`,
       timestamp: new Date(),
       favorites: false,
     });
