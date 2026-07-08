@@ -11,10 +11,11 @@ saveExercise.addEventListener("click", () => {
   const exerciseValue = exerciseInput.value.trim();
   const durationValue = durationInput.value.trim();
 
-  /*----DIVEDE THE HOURS BY 60 AND CONVER THE LEFT OVER IN DURATION FROM DIVIDING IT BY 60 AND TURNING INTO MINTUES*/
+  // deler på 60 og gjør om til timer og minutter
   const hours = Math.floor(durationValue / 60);
   const mins = durationValue % 60;
 
+  // visst exercise value og duration value ikke er tom
   if (exerciseValue !== "" && durationValue !== "") {
     const session = document.createElement("div");
     session.classList.add("session");
@@ -24,7 +25,7 @@ saveExercise.addEventListener("click", () => {
     exercise.readOnly = true;
     exercise.value = exerciseValue;
 
-    /*----------TAGS------*/
+    // tags
     const tags = document.createElement("p");
     tags.textContent = "tags";
     tags.classList.add("tags");
@@ -75,6 +76,7 @@ saveExercise.addEventListener("click", () => {
           item.exercise === exerciseValue && item.duration === durationValue,
       );
 
+      // Visst index ikke er -1, remove fra savedExercise
       if (index !== -1) {
         savedExercise.splice(index, 1);
         localStorage.setItem("savedExercise", JSON.stringify(savedExercise));
@@ -83,7 +85,7 @@ saveExercise.addEventListener("click", () => {
       session.remove();
     });
 
-    /*----pushes to savedExercise with the value/input of exercise && duration */
+    // pushes to savedExercise with the value/input of exercise && duration
     savedExercise.push({
       exercise: exerciseValue,
       duration: `${hours}h ${mins}m`,
@@ -94,9 +96,9 @@ saveExercise.addEventListener("click", () => {
     localStorage.setItem("savedExercise", JSON.stringify(savedExercise));
 
     session.append(exercise, duration, editBtn, favoritesBtn, deleteBtn, tags);
-
     sessions.appendChild(session);
 
+    // fjerner input value etter save
     exerciseInput.value = "";
     durationInput.value = "";
   }
