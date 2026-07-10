@@ -31,13 +31,12 @@ saveExercise.addEventListener("click", () => {
     exercise.readOnly = true;
     exercise.value = exerciseValue;
 
-    updateProgress();
-
     // tags
     const tags = document.createElement("p");
     tags.textContent = "tags";
     tags.classList.add("tags");
 
+    // bytter tags content ut i fra exercise value
     if (exerciseValue === "Running") {
       tags.textContent = "Cardio";
     } else if (exerciseValue === "Lifting") {
@@ -124,7 +123,7 @@ function updateProgress() {
   target.textContent = `${goalMinutes}`;
 
   const totalMinutes = savedExercise.reduce((total, session) => {
-    return total + session.duration;
+    return total + Number(session.duration);
   }, 0);
 
   const percent = Math.min((totalMinutes / goalMinutes) * 100, 100);
